@@ -32,7 +32,6 @@ body {
 
 h1 {
     font-family: var(--font-hero);
-    font-size: 5rem;
     text-transform: uppercase;
 }
 

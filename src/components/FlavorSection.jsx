@@ -5,8 +5,9 @@ import MonsterCan from "./MonsterCan";
 import gsap from "gsap";
 import WavyCircles from "./WavyCircles";
 import { FLAVORS } from "../data/flavors";
+import useMobile from "../hooks/useMobile";
 
-const FlavorCan = ({ texturePath, isSpinning }) => {
+const FlavorCan = ({ texturePath, isSpinning, isMobile }) => {
     const texture = useTexture(texturePath);
     texture.flipY = false;
 
@@ -14,14 +15,18 @@ const FlavorCan = ({ texturePath, isSpinning }) => {
 
     useEffect(() => {
         if (isSpinning) {
-            // Spin fast: 2 full rotations (4PI) in 0.5s
-            gsap.to(canRef.current.rotation, {
-                y: canRef.current.rotation.y + Math.PI * 4,
-                duration: 0.5,
-                ease: "power2.inOut"
-            });
+            if (isMobile) {
+                // Mobile: No rotation, just let the texture swap happen via state
+            } else {
+                // Desktop: Spin fast: 2 full rotations (4PI) in 0.5s
+                gsap.to(canRef.current.rotation, {
+                    y: canRef.current.rotation.y + Math.PI * 4,
+                    duration: 0.5,
+                    ease: "power2.inOut"
+                });
+            }
         }
-    }, [isSpinning]);
+    }, [isSpinning, isMobile]);
 
     return (
         <Float speed={2} rotationIntensity={0} floatIntensity={1} floatingRange={[-0.1, 0.1]}>
@@ -35,6 +40,7 @@ const FlavorCan = ({ texturePath, isSpinning }) => {
 };
 
 const FlavorSection = () => {
+    const isMobile = useMobile();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isSpinning, setIsSpinning] = useState(false);
 
@@ -86,7 +92,7 @@ const FlavorSection = () => {
             <WavyCircles color={currentFlavor.color} />
 
             {/* Header */}
-            <h2 className="absolute top-10 text-white text-5xl md:text-7xl font-accent font-bold tracking-widest drop-shadow-md z-20 opacity-90">
+            <h2 className="absolute top-10 text-white text-4xl md:text-7xl font-accent font-bold tracking-widest drop-shadow-md z-20 opacity-90">
                 Choose Your Beast
             </h2>
 
@@ -113,7 +119,7 @@ const FlavorSection = () => {
                         <Environment preset="studio" blur={0.5} />
                         {/* Scale is handled in FlavorCan, adjusted camera to fit */}
                         <group position={[0, 0, 0]}>
-                            <FlavorCan texturePath={currentFlavor.texture} isSpinning={isSpinning} />
+                            <FlavorCan texturePath={currentFlavor.texture} isSpinning={isSpinning} isMobile={isMobile} />
                         </group>
                     </Suspense>
                 </Canvas>
