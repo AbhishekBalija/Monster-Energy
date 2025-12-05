@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls, Center } from "@react-three/drei";
 import MonsterCan from "./MonsterCan";

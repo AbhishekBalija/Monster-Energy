@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Navbar = () => {
     return (
         <nav className="absolute top-0 left-0 w-full flex justify-between items-center p-6 z-50">
