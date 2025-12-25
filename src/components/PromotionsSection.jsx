@@ -9,7 +9,7 @@ const Box = ({ children, className = '' }) => (
 
 export default function PromotionsSection() {
     return (
-        <section className="bg-black text-white min-h-screen relative overflow-hidden font-sans selection:bg-[#00ff00] selection:text-black">
+        <section id="promotions" className="bg-black text-white min-h-screen relative overflow-hidden font-sans selection:bg-[#00ff00] selection:text-black">
             {/* 1. HERO SECTION */}
             <div className="relative h-[80vh] flex items-center justify-center overflow-hidden">
                 {/* Background - To be replaced with generated image or gradient */}

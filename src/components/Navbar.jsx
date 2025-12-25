@@ -7,13 +7,18 @@ const Navbar = () => {
 
             {/* Navigation Links (Desktop) */}
             <div className="hidden md:flex gap-8">
-                {['Products', 'Promotions', 'Gaming', 'Music'].map((item) => (
+                {[
+                    { name: 'Fuel', link: '#fuel' },
+                    { name: 'Lifestyle', link: '#lifestyle' },
+                    { name: 'Flavors', link: '#flavors' },
+                    { name: 'Promotions', link: '#promotions' }
+                ].map((item) => (
                     <a
-                        key={item}
-                        href={`#${item.toLowerCase()}`}
+                        key={item.name}
+                        href={item.link}
                         className="text-white font-bold uppercase tracking-wider hover:text-green-500 transition-colors font-tech text-sm"
                     >
-                        {item}
+                        {item.name}
                     </a>
                 ))}
             </div>

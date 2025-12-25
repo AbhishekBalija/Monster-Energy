@@ -69,7 +69,7 @@ const LifestyleScene = () => {
 
 const LifestyleSection = () => {
     return (
-        <section className="relative w-full h-screen bg-black overflow-hidden">
+        <section id="lifestyle" className="relative w-full h-screen bg-black overflow-hidden">
 
             {/* HTML Header Layer */}
             <div className="absolute top-10 w-full text-center z-10 pointer-events-none">

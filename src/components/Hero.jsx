@@ -216,10 +216,10 @@ const Hero = () => {
 
                 {/* Button - Needs pointer events to be clickable */}
                 <div className="mt-8 md:mt-20 pointer-events-auto">
-                    <button className="relative group bg-[#64ff00] text-black text-lg md:text-xl font-bold px-6 py-2 md:px-8 md:py-3 hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(100,255,0,0.8)]"
+                    <a href="#flavors" className="relative inline-block group bg-[#64ff00] text-black text-lg md:text-xl font-bold px-6 py-2 md:px-8 md:py-3 hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(100,255,0,0.8)]"
                         style={{ clipPath: 'polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)' }}>
                         <span className="font-[Orbitron] tracking-widest uppercase">Get Charged</span>
-                    </button>
+                    </a>
                 </div>
             </div>
 

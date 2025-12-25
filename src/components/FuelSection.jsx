@@ -23,6 +23,7 @@ const FuelSection = () => {
 
     return (
         <section
+            id="fuel"
             ref={containerRef}
             className="relative h-screen w-full overflow-hidden bg-black"
         >
