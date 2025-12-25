@@ -12,6 +12,14 @@ const CanRig = () => {
     const scrollGroup = useRef(); // Outer group for scroll exit
     const entryGroup = useRef();  // Inner group for entry animation
     const canRef = useRef();      // Leaf for mouse interaction
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        handleResize(); // Check on mount
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Mouse interaction state (Parallax)
     useFrame((state) => {
@@ -53,10 +61,13 @@ const CanRig = () => {
 
         const entryTl = gsap.timeline({ delay: 0.3 });
 
+        // Check if mobile for positioning (Move UP on mobile to make room for text)
+        const isSmallScreen = window.innerWidth < 768;
+
         // Animation Phase 1: drop to center
         entryTl.to(entryGroup.current.position, {
             x: 0,
-            y: 0,
+            y: 0, // Keep centered (User requested)
             z: 0,
             duration: 3.5,
             ease: "power2.out"
@@ -135,7 +146,7 @@ const CanRig = () => {
             <group ref={entryGroup}>
                 <group ref={canRef}>
                     <Center>
-                        <MonsterCan scale={1.5} />
+                        <MonsterCan scale={isMobile ? 0.9 : 1.5} />
                     </Center>
                 </group>
             </group>
@@ -169,7 +180,7 @@ const Hero = () => {
 
             {/* Layer 1: Background Text (Behind Model) */}
             <div className="absolute z-1 flex flex-col items-center justify-center pointer-events-none select-none w-full h-full overflow-hidden">
-                <h2 style={{ fontFamily: '"Energy Storm", sans-serif' }} className="text-[#64ff00] text-[8vw] leading-none uppercase tracking-normal opacity-40 text-center drop-shadow-[0_0_25px_rgba(100,255,0,0.2)] whitespace-nowrap scale-y-[4] origin-center translate-y-10 flex gap-[20vw]">
+                <h2 style={{ fontFamily: '"Energy Storm", sans-serif' }} className="text-[#64ff00] text-[15vw] md:text-[8vw] leading-none uppercase tracking-normal opacity-40 text-center drop-shadow-[0_0_25px_rgba(100,255,0,0.2)] whitespace-nowrap scale-y-[4] origin-center translate-y-10 flex flex-col md:flex-row gap-4 md:gap-[20vw]">
                     <span>Unleash</span> <span>The Beast</span>
                 </h2>
             </div>
@@ -197,15 +208,15 @@ const Hero = () => {
             </div>
 
             {/* Layer 3: Foreground Text (In Front of Model) */}
-            <div className="relative z-20 flex flex-col items-center text-center mt-[650px] pointer-events-none">
+            <div className="absolute bottom-12 left-0 w-full md:relative md:bottom-auto md:w-auto md:inset-auto z-20 flex flex-col items-center text-center md:mt-[650px] pointer-events-none px-4">
                 {/* Main Title - Single Line & Smaller */}
-                <h1 className="text-white text-4xl md:text-6xl font-feast tracking-widest uppercase drop-shadow-[0_4px_4px_rgba(0,0,0,1)] mix-blend-normal whitespace-nowrap">
+                <h1 className="text-white text-2xl md:text-6xl font-feast tracking-widest uppercase drop-shadow-[0_4px_4px_rgba(0,0,0,1)] mix-blend-normal whitespace-normal md:whitespace-nowrap leading-normal">
                     Maximum charge <span className="text-[#64ff00] mx-2">#</span> zero compromise
                 </h1>
 
                 {/* Button - Needs pointer events to be clickable */}
-                <div className="mt-20 pointer-events-auto">
-                    <button className="relative group bg-[#64ff00] text-black text-xl font-bold px-8 py-3 hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(100,255,0,0.8)]"
+                <div className="mt-8 md:mt-20 pointer-events-auto">
+                    <button className="relative group bg-[#64ff00] text-black text-lg md:text-xl font-bold px-6 py-2 md:px-8 md:py-3 hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(100,255,0,0.8)]"
                         style={{ clipPath: 'polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)' }}>
                         <span className="font-[Orbitron] tracking-widest uppercase">Get Charged</span>
                     </button>

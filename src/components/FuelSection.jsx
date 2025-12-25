@@ -49,7 +49,7 @@ const FuelSection = () => {
                     whileInView={{ opacity: 1, filter: "blur(0px)" }}
                     transition={{ duration: 1.2, ease: "easeOut" }}
                     viewport={{ once: true, margin: "-100px" }}
-                    className="font-black text-6xl md:text-8xl lg:text-9xl text-white tracking-tight scale-210"
+                    className="font-black text-5xl md:text-8xl lg:text-9xl text-white tracking-tight scale-210"
                     style={{
                         fontFamily: "var(--font-accent)",
                         textShadow: "0 0 20px rgba(57, 255, 20, 0.6), 0 0 40px rgba(57, 255, 20, 0.3)"
@@ -60,7 +60,7 @@ const FuelSection = () => {
 
                 {/* Subtext */}
                 <motion.p
-                    className="absolute bottom-12 md:bottom-20 text-white text-xl md:text-2xl font-light tracking-[0.3em] uppercase opacity-90 w-full"
+                    className="absolute bottom-24 md:bottom-20 text-white text-xl md:text-2xl font-light tracking-[0.3em] uppercase opacity-90 w-full"
                     animate={{
                         opacity: [0.8, 1, 0.8],
                         scale: [1, 1.05, 1],
@@ -83,8 +83,8 @@ const FuelSection = () => {
             {/* HUD Elements */}
             <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-between py-10 md:py-0 md:justify-center">
 
-                {/* Left Side - The Fuel */}
-                <div className="absolute top-1/2 -translate-y-1/2 left-4 md:left-12 flex flex-col gap-8 items-start md:flex border-l-2 border-(--monster-green) pl-6 py-8 backdrop-blur-[2px] bg-black/10">
+                {/* Left Side - The Fuel - HIDDEN ON MOBILE to prevent overlap */}
+                <div className="absolute top-1/2 -translate-y-1/2 left-4 md:left-12 hidden md:flex flex-col gap-8 items-start border-l-2 border-(--monster-green) pl-6 py-8 backdrop-blur-[2px] bg-black/10">
                     {leftSpecs.map((spec, i) => (
                         <motion.div
                             key={i}
@@ -106,8 +106,8 @@ const FuelSection = () => {
                     ))}
                 </div>
 
-                {/* Right Side - The Impact */}
-                <div className="absolute top-1/2 -translate-y-1/2 right-4 md:right-12 flex flex-col gap-8 items-end md:flex border-r-2 border-(--monster-green) pr-6 py-8 backdrop-blur-[2px] bg-black/10">
+                {/* Right Side - The Impact - HIDDEN ON MOBILE to prevent overlap */}
+                <div className="absolute top-1/2 -translate-y-1/2 right-4 md:right-12 hidden md:flex flex-col gap-8 items-end border-r-2 border-(--monster-green) pr-6 py-8 backdrop-blur-[2px] bg-black/10">
                     {rightSpecs.map((spec, i) => (
                         <motion.div
                             key={i}
@@ -130,8 +130,8 @@ const FuelSection = () => {
                 </div>
 
                 {/* Mobile View - Bottom Stack */}
-                <div className="absolute bottom-8 w-full flex justify-around px-2 md:hidden">
-                    <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory py-2 no-scrollbar">
+                <div className="absolute bottom-8 w-full md:hidden">
+                    <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory px py-4 w-full justify-start no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                         {[...leftSpecs, ...rightSpecs].map((item, i) => (
                             <div key={i} className="shrink-0 snap-center flex items-center gap-2 bg-black/80 border border-(--monster-green) px-4 py-2 rounded-full backdrop-blur-md shadow-lg shadow-black/50">
                                 <item.icon className="w-4 h-4 text-(--monster-green)" />
