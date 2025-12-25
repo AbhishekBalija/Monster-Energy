@@ -1,6 +1,6 @@
 # ⚡ Monster Energy - Unleash The Beast
 
-![Monster Energy Banner](/public/featured_gaming_subway.png)
+![Monster Energy Banner](/public/tweeter.png)
 
 <div align="center">
   <h3>
