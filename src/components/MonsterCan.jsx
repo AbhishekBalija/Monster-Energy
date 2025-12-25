@@ -13,7 +13,7 @@ export default function MonsterCan({ itemMap, ...props }) {
         if (itemMap) {
             clonedScene.traverse((child) => {
                 if (child.isMesh) {
-                    // Clone material to avoid affecting the shared implementation (Hero section)
+                    // Clone material so this instance doesn't mess with the shared one
                     child.material = child.material.clone();
                     child.material.map = itemMap;
                     child.material.needsUpdate = true;
