@@ -1,7 +1,6 @@
 const Navbar = () => {
     return (
         <nav className="absolute top-0 left-0 w-full flex justify-between items-center p-6 z-50">
-            {/* Logo */}
             <div className="flex items-center">
                 <img src="/logo.png" alt="Monster Energy Logo" className="h-12 md:h-16 object-contain" />
             </div>
